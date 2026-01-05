@@ -133,6 +133,12 @@ function escreverTexto() {
   <img src="fotos/600822255_1403504548083160_335406480923595622_n.jpg">
 </div>
 
+<!-- BOTÃO CORAÇÃO FINAL -->
+<div id="botaoFinal" onclick="mostrarFinal()">
+  💜
+  <p>Clique aqui gata</p>
+</div>
+
 
 
 
@@ -230,7 +236,29 @@ escreverTexto();
 @keyframes fade {
   from { opacity: 0; }
   to { opacity: 1; }
+}/* ===== BOTÃO CORAÇÃO FINAL ===== */
+#botaoFinal {
+  margin: 40px auto;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #ff7ad9, #b4007a);
+  border-radius: 50%;
+  display: none;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 122, 217, 0.9);
+  animation: pulse 1.5s infinite;
+  color: white;
+  font-size: 48px;
+  text-align: center;
+  line-height: 90px;
 }
+
+#botaoFinal p {
+  font-size: 14px;
+  margin: 0;
+  margin-top: -10px;
+}
+
 </style>
 <script>
 let index = 0;
@@ -244,15 +272,21 @@ function mostrarSlide() {
     slides[index].classList.add("active");
     index++;
   } else {
-    // acabou as fotos → mostrar final surpresa
-    document.querySelector(".slider").style.display = "none";
-    finalSurpresa.style.display = "flex";
-    clearInterval(slideInterval);
-  }
+  document.querySelector(".slider").style.display = "none";
+  document.getElementById("botaoFinal").style.display = "block";
+  clearInterval(slideInterval);
+}
+
 }
 
 mostrarSlide();
 const slideInterval = setInterval(mostrarSlide, 3500);
+</script>
+<script>
+function mostrarFinal() {
+  document.getElementById("botaoFinal").style.display = "none";
+  document.getElementById("finalSurpresa").style.display = "flex";
+}
 </script>
 
 </body>
