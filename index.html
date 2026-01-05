@@ -154,7 +154,60 @@ escreverTexto();
   }, 400);
 }
 </script>
+
+
+
 <style>
+/* ===== FINAL SURPRESA ===== */
+#finalSurpresa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #2a0036, #120016);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  text-align: center;
+}
+
+#finalSurpresa h1 {
+  font-size: 36px;
+  color: #ffb3f7;
+}
+
+#finalSurpresa p {
+  font-size: 18px;
+  color: #f3d9ff;
+  max-width: 600px;
+}
+
+.coracao {
+  font-size: 60px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+</style>
+<!-- FINAL SURPRESA -->
+<div id="finalSurpresa">
+  <div class="coracao">💜</div>
+  <h1>Eu te amo</h1>
+  <p>
+    Você é o meu pedacinho do céu.<br>
+    Obrigado por existir na minha vida.<br>
+    Sempre vou escolher você.
+  </p>
+</div>
+<style>
+/* ===== SLIDER ===== */
 .slider {
   position: relative;
   max-width: 90%;
@@ -165,38 +218,41 @@ escreverTexto();
   width: 100%;
   display: none;
   border-radius: 20px;
+  box-shadow: 0 0 25px rgba(199, 125, 255, 0.6);
 }
 
 .slider img.active {
   display: block;
   animation: fade 1.5s ease-in-out;
+  box-shadow: 0 0 35px rgba(255, 126, 219, 0.9);
 }
 
 @keyframes fade {
   from { opacity: 0; }
   to { opacity: 1; }
-}.slider img {
-  box-shadow: 0 0 25px rgba(199, 125, 255, 0.6);
-  transition: box-shadow 0.5s ease;
 }
-
-.slider img.active {
-  box-shadow: 0 0 35px rgba(255, 126, 219, 0.9);
-}
-
 </style>
 <script>
 let index = 0;
 const slides = document.querySelectorAll(".slider img");
+const finalSurpresa = document.getElementById("finalSurpresa");
 
 function mostrarSlide() {
   slides.forEach(img => img.classList.remove("active"));
-  slides[index].classList.add("active");
-  index = (index + 1) % slides.length;
+
+  if (index < slides.length) {
+    slides[index].classList.add("active");
+    index++;
+  } else {
+    // acabou as fotos → mostrar final surpresa
+    document.querySelector(".slider").style.display = "none";
+    finalSurpresa.style.display = "flex";
+    clearInterval(slideInterval);
+  }
 }
 
 mostrarSlide();
-setInterval(mostrarSlide, 3500);
+const slideInterval = setInterval(mostrarSlide, 3500);
 </script>
 
 </body>
