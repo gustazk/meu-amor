@@ -111,22 +111,20 @@ E se eu pudesse escolher de novo, escolheria vc… todas as vezes princesa.
                                             TTT 💜
 </div>
 
- </div>
+<!-- SLIDER DE FOTOS -->
+<div class="slider">
+  <img src="fotos/598255990_2011824106329599_3426613346347901148_n.jpg">
+  <img src="fotos/598790193_1551050806137897_8798864864436763074_n.jpg">
+  <img src="fotos/608338190_2694020284278789_5378789354789551708_n.jpg">
+  <img src="fotos/575795440_4348882718768408_863004068952537042_n.jpg">
+  <img src="fotos/599670673_25414707901548671_5447950523494318137_n.jpg">
+  <img src="fotos/604381689_1213556860875454_8878084854574135907_n.jpg">
+  <img src="fotos/610676650_1419884872837328_1946846856075840867_n.webp">
+  <img src="fotos/600520137_745992537982637_3328869493042714831_n.webp">
+  <img src="fotos/597852539_2341000459683130_8731225179581554385_n.webp">
+  <img src="fotos/600822255_1403504548083160_335406480923595622_n.jpg">
+</div>
 
- <img src="fotos/598255990_2011824106329599_3426613346347901148_n.jpg">
-<img src="fotos/598790193_1551050806137897_8798864864436763074_n.jpg">
-<img src="fotos/608338190_2694020284278789_5378789354789551708_n.jpg">
-<img src="fotos/575795440_4348882718768408_863004068952537042_n.jpg">
-<img src="fotos/599670673_25414707901548671_5447950523494318137_n.jpg">
-<img src="fotos/604381689_1213556860875454_8878084854574135907_n.jpg">
-<img src="fotos/610676650_1419884872837328_1946846856075840867_n.webp">
-<img src="fotos/600520137_745992537982637_3328869493042714831_n.webp">
-<img src="fotos/597852539_2341000459683130_8731225179581554385_n.webp">
-<img src="fotos/600822255_1403504548083160_335406480923595622_n.jpg">
- <!-- GALERIA DE FOTOS -->
-  <div class="photo-gallery">
-    <!-- Fotos vão aqui depois -->
-  </div>
 
 </div>
 
@@ -146,6 +144,42 @@ function startExperience() {
     setTimeout(() => heart.remove(), 7000);
   }, 400);
 }
+</script>
+<style>
+.slider {
+  position: relative;
+  max-width: 90%;
+  margin: 30px auto;
+}
+
+.slider img {
+  width: 100%;
+  display: none;
+  border-radius: 20px;
+}
+
+.slider img.active {
+  display: block;
+  animation: fade 1.5s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slider img");
+
+function mostrarSlide() {
+  slides.forEach(img => img.classList.remove("active"));
+  slides[index].classList.add("active");
+  index = (index + 1) % slides.length;
+}
+
+mostrarSlide();
+setInterval(mostrarSlide, 3500);
 </script>
 
 </body>
